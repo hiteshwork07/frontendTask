@@ -1,0 +1,13 @@
+@import url('http://db.onlinewebfonts.com/c/4c444e6af06e03de15b1bc2c1164ef77?family=Sarala');
+body {
+  margin: 0;
+  font-family: "Sarala";
+}
+* {
+  font-family: Sarala !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

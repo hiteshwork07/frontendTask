@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+  background: #7f8c8d;
+}
+* {
+  font-family: 'Inter', sans-serif;
+}
+.searchbar-wrapper {
+  padding: 20px;
+  text-align: right;
+  display: flex;
+  justify-content: end;
+}
+.MuiInputLabel-root {
+  color: #fff !important;
+}
+.MuiInputBase-formControl {
+  &:after {
+    border-bottom: 2px solid #fff !important;
+  }
+  &:before {
+    border-bottom: 1px solid #fff !important;
+  }
+}
+.MuiInputBase-input {
+  color: #fff !important;
+}
+.MuiOutlinedInput-notchedOutline {
+  border-color: #fff !important;
+}
+.page-top-space {
+  max-width: 1000px;
+  .card-wrapper {
+    border-radius: 10px;
+    border: 5px solid;
+    background: #fff;
+    padding: 10px;
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .detail-wrapper {
+      h2 {
+        color: #2e3d4f;
+        margin: 0 0 0 5px;
+      }
+      h4 {
+        color: #95a5a6;
+        margin: 0 0 0 10px;
+      }
+    }
+
+    .process-info {
+      display: flex;
+      .chart-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        img {
+          width: 100%;
+        }
+        p {
+          color: #646464;
+          margin: 0 0 5px 0;
+          text-align: center;
+        }
+      }
+      .process-details {
+        text-align: right;
+        h3 {
+          margin: 0;
+          font-size: 22px;
+        }
+        p {
+          margin: 0;
+          font-size: 16px;
+          color: #646464;
+        }
+        h2 {
+          margin: 0;
+          color: #26b264;
+          font-size: 26px;
+        }
+        .text-orange {
+          color: #e3832f;
+        }
+        .text-blue {
+          color: #397bb7;
+        }
+      }
+
+    }
+  }
+}
