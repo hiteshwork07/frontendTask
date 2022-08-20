@@ -1,30 +1,38 @@
-export const DATA_REQUEST = 'DATA_REQUEST';
-export const DATA_SUCCESS = 'DATA_SUCCESS';
-export const DATA_ERROR = 'DATA_ERROR';
+export const DATA_REQUEST = "DATA_REQUEST";
+export const DATA_SUCCESS = "DATA_SUCCESS";
+export const DATA_ERROR = "DATA_ERROR";
 
-export const RESET_BLOCK = 'RESET_BLOCK';
+export const RESET_BLOCK = "RESET_BLOCK";
 
-export const RESET_FLAGS = 'RESET_FLAGS';
+export const RESET_FLAGS = "RESET_FLAGS";
 
 const block = {
   loading: false,
-  error: '',
+  error: "",
   success: false,
 };
 
 const initialState = {
-  data: { ...block },
+  data: { ...block, records: [] },
 };
 
 export const Reducer = (state = initialState, action) => {
   switch (action.type) {
-
     case DATA_REQUEST:
+      if (action.payload.offset) return { ...state, data: { ...state.data } };
       return { ...state, data: { ...state.data, loading: true } };
     case DATA_SUCCESS:
       return {
         ...state,
-        data: { ...state.data,...action.payload, loading: false, success: true, error: '' },
+        data: {
+          ...state.data,
+          ...action.payload,
+          records: [...state.data.records, ...action.payload.records],
+          offset: action.payload.offset,
+          loading: false,
+          success: true,
+          error: "",
+        },
       };
     case DATA_ERROR:
       return {

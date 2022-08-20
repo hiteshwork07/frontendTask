@@ -13,12 +13,13 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 dayjs.extend(isBetween);
 
 export const Dashboard = () => {
   const {
-    data: { loading, records = [] },
+    data: { loading, records = [], offset },
   } = useSelector(({ dashboard }) => dashboard);
   const dispatch = useDispatch();
 
@@ -28,6 +29,11 @@ export const Dashboard = () => {
 
   const handleChange = (event) => {
     setSort(event.target.value);
+  };
+
+  const handleFetchMoreData = () => {
+    if (offset)
+      dispatch(dashboardRequest({ maxRecords: 500, pageSize: 20, offset }));
   };
 
   useEffect(() => {
@@ -67,7 +73,7 @@ export const Dashboard = () => {
   }, [sort]);
 
   useEffect(() => {
-    dispatch(dashboardRequest());
+    dispatch(dashboardRequest({ maxRecords: 500, pageSize: 20 }));
   }, []);
 
   useEffect(() => {
@@ -103,11 +109,22 @@ export const Dashboard = () => {
               </Select>
             </FormControl>
           </div>
-          <Grid container spacing={5} className="filter-action-wrapper">
-            {data.map((data) => (
-              <UserInfoBox key={data.id} info={data} />
-            ))}
-          </Grid>
+          <InfiniteScroll
+            dataLength={data.length}
+            next={handleFetchMoreData}
+            hasMore={!!offset}
+            loader={
+              <h4 style={{ textAlign: "center", color: "#fff", fontSize: 24 }}>
+                Loading...
+              </h4>
+            }
+          >
+            <Grid container spacing={5} className="filter-action-wrapper">
+              {data.map((data) => (
+                <UserInfoBox key={data.id} info={data} />
+              ))}
+            </Grid>
+          </InfiniteScroll>
         </>
       )}
     </Container>

@@ -4,14 +4,15 @@ import { Axios } from "../../api/axios";
 import { getSimplifiedError } from "../../utils/error";
 import { DATA_REQUEST, DATA_SUCCESS, DATA_ERROR } from "../reducers/Reducer";
 
-async function dashboard() {
+async function dashboard(params) {
   return await Axios.get(
-    "https://api.airtable.com/v0/appBTaX8XIvvr6zEC/Users?maxRecords=30"
+    `https://api.airtable.com/v0/appBTaX8XIvvr6zEC/Users`,
+    { params }
   );
 }
-function* handleDashboardApi() {
+function* handleDashboardApi({ payload }) {
   try {
-    const response = yield call(dashboard);
+    const response = yield call(dashboard, payload);
     if (response) {
       yield put({
         type: DATA_SUCCESS,

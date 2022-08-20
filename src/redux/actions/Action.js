@@ -1,6 +1,6 @@
 import { DATA_REQUEST, RESET_BLOCK, RESET_FLAGS } from "../reducers/Reducer";
 
-export const dashboardRequest = () => ({ type: DATA_REQUEST });
+export const dashboardRequest = (payload) => ({ type: DATA_REQUEST, payload });
 
 export const resetBlock = (payload) => ({
   type: RESET_BLOCK,
